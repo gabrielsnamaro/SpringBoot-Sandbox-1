@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
-@Table
+@Table(name = "todo_entity")
 @Getter
 @Setter
 public class TodoEntity {
@@ -15,6 +15,6 @@ public class TodoEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "name")
+    @Column(name = "nome")
     private String nome;
 }
