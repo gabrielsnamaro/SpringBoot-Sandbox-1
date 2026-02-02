@@ -14,4 +14,7 @@ public class TodoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @Column(name = "name")
+    private String nome;
 }
