@@ -1,3 +1,7 @@
 spring:
   application:
     name: Sandbox
+  datasource:
+    username: sandbox
+    password: sandbox
+    url: jdbc:postgresql://localhost:6789/sandbox
