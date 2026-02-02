@@ -1,17 +1,16 @@
 package io.github.gabrielsnamaro.Sandbox.controller;
 
 import io.github.gabrielsnamaro.Sandbox.dto.CadastroTodoDto;
+import io.github.gabrielsnamaro.Sandbox.dto.ResultadoPesquisaTodoDto;
 import io.github.gabrielsnamaro.Sandbox.model.TodoEntity;
 import io.github.gabrielsnamaro.Sandbox.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,5 +29,14 @@ public class TodoController {
                 .toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResultadoPesquisaTodoDto> buscarPorId(@PathVariable("id") String idString) {
+        UUID id = UUID.fromString(idString);
+
+        ResultadoPesquisaTodoDto dto = service.buscarPorId(id);
+
+        return ResponseEntity.ok(dto);
     }
 }

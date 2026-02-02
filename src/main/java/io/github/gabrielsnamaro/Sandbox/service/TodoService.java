@@ -1,11 +1,16 @@
 package io.github.gabrielsnamaro.Sandbox.service;
 
 import io.github.gabrielsnamaro.Sandbox.dto.CadastroTodoDto;
+import io.github.gabrielsnamaro.Sandbox.dto.ResultadoPesquisaTodoDto;
+import io.github.gabrielsnamaro.Sandbox.exception.RecursoNaoEncontradoException;
 import io.github.gabrielsnamaro.Sandbox.mapper.TodoMapper;
 import io.github.gabrielsnamaro.Sandbox.model.TodoEntity;
 import io.github.gabrielsnamaro.Sandbox.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -19,5 +24,12 @@ public class TodoService {
         repository.save(entidade);
 
         return entidade;
+    }
+
+    public ResultadoPesquisaTodoDto buscarPorId(UUID id) {
+        return repository
+                .findById(id)
+                .map(mapper::paraResultadoPesquisaDto)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("'Todo' não encontrado para o id " + id + ". "));
     }
 }
