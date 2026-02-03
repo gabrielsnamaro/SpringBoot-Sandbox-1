@@ -1,4 +1,4 @@
-package io.github.gabrielsnamaro.Sandbox.dto;
+package io.github.gabrielsnamaro.Sandbox.model.dto;
 
 import java.util.UUID;
 

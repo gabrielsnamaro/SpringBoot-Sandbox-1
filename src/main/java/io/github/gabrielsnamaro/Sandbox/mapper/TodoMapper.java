@@ -1,12 +1,10 @@
 package io.github.gabrielsnamaro.Sandbox.mapper;
 
-import io.github.gabrielsnamaro.Sandbox.dto.CadastroTodoDto;
-import io.github.gabrielsnamaro.Sandbox.dto.ResultadoPesquisaTodoDto;
+import io.github.gabrielsnamaro.Sandbox.model.dto.CadastroTodoDto;
+import io.github.gabrielsnamaro.Sandbox.model.dto.ResultadoPesquisaTodoDto;
 import io.github.gabrielsnamaro.Sandbox.model.TodoEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
-import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface TodoMapper {
