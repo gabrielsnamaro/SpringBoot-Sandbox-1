@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -40,5 +41,10 @@ public class TodoController {
         resposta = ResponseEntity.ok(service.buscarPorId(id));
 
         return resposta;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ResultadoPesquisaTodoDto>> pesquisar(@RequestParam(name = "nome", required = false) String nome) {
+        return ResponseEntity.ok(service.pesquisar(nome));
     }
 }

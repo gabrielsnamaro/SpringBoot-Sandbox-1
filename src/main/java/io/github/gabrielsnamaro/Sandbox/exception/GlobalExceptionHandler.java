@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErroResposta> handleRecursoNaoEncontradoException(RecursoNaoEncontradoException e) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body(ErroResposta.recursoNaoEncontrado());
+                .body(ErroResposta.recursoNaoEncontrado(e.getMessage()));
     }
 
 }

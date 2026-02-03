@@ -9,6 +9,7 @@ import io.github.gabrielsnamaro.Sandbox.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -30,5 +31,12 @@ public class TodoService {
                 .findById(id)
                 .map(mapper::paraResultadoPesquisaDto)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("'Todo' não encontrado para o id " + id + ". "));
+    }
+
+    public List<ResultadoPesquisaTodoDto> pesquisar(String nome) {
+        return repository.pesquisar(nome)
+                .stream()
+                .map(mapper::paraResultadoPesquisaDto)
+                .toList();
     }
 }
