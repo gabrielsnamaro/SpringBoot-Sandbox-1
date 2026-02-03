@@ -26,7 +26,7 @@ public class TodoService {
         return entidade;
     }
 
-    public ResultadoPesquisaTodoDto buscarPorId(UUID id) {
+    public ResultadoPesquisaTodoDto buscarPorId(UUID id) throws RecursoNaoEncontradoException {
         return repository
                 .findById(id)
                 .map(mapper::paraResultadoPesquisaDto)

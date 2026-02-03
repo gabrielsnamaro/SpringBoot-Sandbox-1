@@ -2,6 +2,7 @@ package io.github.gabrielsnamaro.Sandbox.controller;
 
 import io.github.gabrielsnamaro.Sandbox.dto.CadastroTodoDto;
 import io.github.gabrielsnamaro.Sandbox.dto.ResultadoPesquisaTodoDto;
+import io.github.gabrielsnamaro.Sandbox.exception.RecursoNaoEncontradoException;
 import io.github.gabrielsnamaro.Sandbox.model.TodoEntity;
 import io.github.gabrielsnamaro.Sandbox.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -35,8 +36,14 @@ public class TodoController {
     public ResponseEntity<ResultadoPesquisaTodoDto> buscarPorId(@PathVariable("id") String idString) {
         UUID id = UUID.fromString(idString);
 
-        ResultadoPesquisaTodoDto dto = service.buscarPorId(id);
+        ResponseEntity<ResultadoPesquisaTodoDto> resposta;
 
-        return ResponseEntity.ok(dto);
+        try {
+            resposta = ResponseEntity.ok().body(service.buscarPorId(id));
+        } catch(RecursoNaoEncontradoException e) {
+            resposta = ResponseEntity.notFound().build();
+        }
+
+        return resposta;
     }
 }
